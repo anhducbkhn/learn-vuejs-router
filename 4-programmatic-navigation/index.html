@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	</head>
+	<body>
+	<div id="app">
+			<h1> Programmatic Navigation </h1>
+			<!-- <router-link :to="foo"> /user/foo </router-link> -->
+    		 <!-- <router-link :to="profile"> /user/foo/profile </router-link> -->
+    		<router-link :to="{ path: 'register', query: { plan: 'private' }}">Register</router-link>
+
+			<router-view></router-view>
+	</div>
+
+	<script >
+	
+	const Foo = {
+		template: '<div> Foo </div>'
+	}
+
+	const Bar = {
+		template: '<div> Bar </div>'
+	}
+
+	const router = new VueRouter ({
+		routes: [
+			{
+				path: '/foo',
+				component: Foo
+			},
+			{
+				path: '/bar',
+				component: Bar
+			}
+		]
+	});
+
+	router.push ('foo');
+	const app = new Vue ({
+				router	
+	}).$mount("#app")
+
+
+	//Run in console
+	// router.push('foo')
+	// router.push('bar')
+	// router.push(-1)
+	// router.push(1)
+	</script>
+	</body>	
+</html>	
