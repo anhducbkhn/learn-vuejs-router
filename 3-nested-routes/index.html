@@ -9,6 +9,8 @@
 			<router-link to="/user/foo">/user/foo</router-link>
     		<router-link to="/user/foo/profile">/user/foo/profile</router-link>
     		<router-link to="/user/foo/posts">/user/foo/posts</router-link>
+    		<router-link to="/user/foo/category">/user/foo/posts</router-link>
+    		<router-link to="/user/foo/category/foo">/user/foo/posts</router-link>
 			<router-view></router-view>
 		</div>
 
@@ -32,6 +34,23 @@
 				template: '<div>Posts</div>'
 			}
 
+			const PostsCategory = {
+				template: `
+					<div>
+						<h2> PostsCategory </h2>
+						<router-view></router-view>
+					</div>
+				`
+			}
+
+			const CategoryFoo = {
+				template: '<div> CategoryFoo </div>'
+			}
+
+			const CategoryHome = {
+				template: '<div> CategoryHome </div'
+			}
+
 			const router = new VueRouter ({
 				routes: [
 					{ 
@@ -45,6 +64,21 @@
 							{
 								path: 'posts',
 								component: UserPosts
+							},
+							{
+								path: 'category',
+								component: CategoryHome,
+							},
+							{
+								path: 'category/:id',
+								component: PostsCategory,
+								children: [
+									{
+										path: '',
+										component: CategoryFoo
+									}
+
+								]
 							}
 							
 						]
